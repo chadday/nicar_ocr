@@ -11,9 +11,9 @@ Optical Character Recognition, or OCR, is a key tool in today's journalism.
 
 First things first, we need to install the tools we'll be using.
 
-    Xpdf (We'll be using the pdftotext)
-    tesseract
-    ImageMagick
+* Xpdf (We'll be using the pdftotext)
+* tesseract
+* ImageMagick
 
 
 we need to install our OCR engine, [tesseract]('https://github.com/tesseract-ocr/tesseract/wiki').
@@ -54,7 +54,7 @@ Our example is going to be a rather well known one from just a few months ago. I
 
 ![Alt Text](/imgs/Manafort_2.png)
 
-[[https://github.com/chadday/nicar_ocr/blob/master/imgs/Manafort_1.png]]
+
 
 
 But that's just one limited use case. Extracting this text can then be fed into databases or used for visualations.
@@ -62,7 +62,7 @@ But that's just one limited use case. Extracting this text can then be fed into 
 EXAMPLES HERE.
 
 
-## Scenario 2: Extracting text from image file pdfs
+## Scenario 2: Extracting text from image files
 
 #### Basics of tesseract
 
@@ -83,16 +83,45 @@ tesseract wh_salaries.png out pdf
 You should get a file name out.pdf.
 
 
-
-
 #### Using tesseract
+
+tesseract command construction
+
+```
+
+```
+
 
 ```
 tesseract myscan.png out pdf
 ```
 
+## Scenario 3: Scenario 4: Combining our skills to make a searchable pdf out of an image pdf.
 
-## Scenario 3: Combining our skills to make a searchable pdf out of an image pdf.
+#### Converting pdfs to images to prepare for OCR using ImageMagick
+
+ImageMagick command construction
+
+```
+convert [options ...] file [ [options ...] file ...] [options ...] file
+```
+
+Explanation of best practices, why density and resolution matters, getting the best results
+
+
+Let's do this with our Manafort documents.
+
+
+```
+convert -density 300 Exhibit_342.pdf -depth 8 -strip -background white -alpha off exhibit_342.tiff
+```
+
+#### Now we run this tiff through tesseract
+
+Let's look at the text
+
+Let's make a searchable pdf.
+
 
 ## Where to go from here: 
 
