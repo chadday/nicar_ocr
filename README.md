@@ -51,5 +51,7 @@ tesseract myscan.png out pdf
 ## Where to go from here: 
 
 
+## Sources and references
+I created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-training/conferences/nicar-2019') but it relies on many helpful open source resources that deserve credit. Each of the tutorials, tipsheets and documentation were used in the creation of this tutorial and deserve credit for their excellent work and thanks for sharing it with the world.
 
 
