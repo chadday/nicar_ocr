@@ -35,9 +35,51 @@ brew install xpdf
 
 ## Scenario 1: Analyzing a computer generated pdf with embedded text (searchable pdf)
 
+This is probably the easiest problem to solve dealing with pdfs. We want to extract the text from a searchable pdf for analysis of some type.
+
+There are many GUI software programs you can use to do this. They all have strengths and weaknesses.
+    Cometdocs
+    Tabula (free and great for tabular data!)
+    Adobe Acrobat Pro ($$)
+    Abbyy Finereader ($$ but also very accurate)
+
+For this tutorial, we're going to use an open source powertool from Xpdf called pdftotext. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
+
+```
+pdftotext /path/to/my/file.pdf name-of-my-text-file.txt
+```
+
+Our example is going to be a rather well known one from just a few months ago. I often use this tool to check for hidden text, particularly in documents that are redacted. 
+
+MANAFORT EXAMPLE.
+
+But that's just one limited use case. Extracting this text can then be fed into databases or used for visualations.
+
+EXAMPLES HERE.
 
 
 ## Scenario 2: Extracting text from image file pdfs
+
+#### Basics of tesseract
+
+```
+tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]
+```
+
+Let's look at a single image file. In this case, that's the wh_salaries.png file in our imgs folder. This is the first page of our White House salaries pdf but notice that it is not searchable.
+
+This is perhaps the most simple use of tesseract. We will feed in our image file and have it output a searchable pdf.
+
+In the imgs directory, use the following command. 
+
+```
+tesseract wh_salaries.png out pdf
+```
+
+You should get a file name out.pdf.
+
+
+
 
 #### Using tesseract
 
