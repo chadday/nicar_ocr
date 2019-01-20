@@ -88,7 +88,7 @@ You should get a file name out.pdf.
 tesseract command construction
 
 ```
-
+tesseract imagename|stdin outputbase|stdout [options...] [configfile...]
 ```
 
 
@@ -96,7 +96,7 @@ tesseract command construction
 tesseract myscan.png out pdf
 ```
 
-## Scenario 3: Scenario 4: Combining our skills to make a searchable pdf out of an image pdf.
+## Scenario 3: Combining our skills to make a searchable pdf out of an image pdf.
 
 #### Converting pdfs to images to prepare for OCR using ImageMagick
 
