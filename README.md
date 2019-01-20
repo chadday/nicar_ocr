@@ -51,7 +51,11 @@ pdftotext /path/to/my/file.pdf name-of-my-text-file.txt
 
 Our example is going to be a rather well known one from just a few months ago. I often use this tool to check for hidden text, particularly in documents that are redacted. 
 
-MANAFORT EXAMPLE.
+
+![Alt Text](/imgs/Manafort_1.png)
+
+[[https://github.com/chadday/nicar_ocr/blob/master/imgs/Manafort_1.png]]
+
 
 But that's just one limited use case. Extracting this text can then be fed into databases or used for visualations.
 
