@@ -52,7 +52,7 @@ pdftotext /path/to/my/file.pdf name-of-my-text-file.txt
 Our example is going to be a rather well known one from just a few months ago. I often use this tool to check for hidden text, particularly in documents that are redacted. 
 
 
-![Alt Text](/imgs/Manafort_1.png)
+![Alt Text](/imgs/Manafort_1.png | width="100")
 
 [[https://github.com/chadday/nicar_ocr/blob/master/imgs/Manafort_1.png]]
 
