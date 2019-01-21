@@ -16,10 +16,11 @@ First things first, we need to install the tools we'll be using.
 
 * ImageMagick
 
-Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation 
-    * Xpdf [documentation]()
-    * tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
-    * ImageMagick [documentation]()
+Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation.
+
+* Xpdf [documentation]()
+* tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
+* ImageMagick [documentation]()
 
 For Mac, we'll be using the Homebrew package manager. You can install it [here](). So for tesseract, you will use the following command.
 ```
@@ -47,10 +48,11 @@ We'll  be using a number of files for our examples. You can find them in [here](
 This is probably the easiest problem to solve dealing with pdfs. We want to extract the text from a searchable pdf for analysis of some type.
 
 There are many GUI software programs you can use to do this. They all have strengths and weaknesses.
-    * Cometdocs
-    * Tabula (free and great for tabular data!)
-    * Adobe Acrobat Pro ($$)
-    * Abbyy Finereader ($$ but also very accurate)
+
+* [Cometdocs](https://www.cometdocs.com/)
+* [Tabula](https://tabula.technology/) (free and great for tabular data!)
+* [Adobe Acrobat Pro](https://acrobat.adobe.com/us/en/acrobat/pricing.html?mv=search&sdid=J7XBWTSV&ef_id=CjwKCAiA1ZDiBRAXEiwAIWyNC62H_xFn3sW5k3JAETpc_MeS9HOq-7l-qD2cvFXcU-Qkl-v_TPYjSxoC4bsQAvD_BwE:G:s&s_kwcid=AL!3085!3!99546333262!e!!g!!%2Badobe%20%2Bacrobat%20%2Bpro&gclid=CjwKCAiA1ZDiBRAXEiwAIWyNC62H_xFn3sW5k3JAETpc_MeS9HOq-7l-qD2cvFXcU-Qkl-v_TPYjSxoC4bsQAvD_BwE) ($$)
+* [Abbyy Finereader](https://www.abbyy.com/en-us/finereader/?redirect-from=old-fr-pro&__c=1) ($$ but also very accurate)
 
 For this tutorial, we're going to use an open source powertool from Xpdf called pdftotext. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
 
