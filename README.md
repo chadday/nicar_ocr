@@ -3,34 +3,43 @@ A tutorial on optical character recognition using tesseract, ImageMagick and oth
 
 ## Introduction
 
-Optical Character Recognition, or OCR, is a key tool in today's journalism. 
-
+Optical Character Recognition, or OCR, is a key tool in today's journalism. MORE HERE.
 
 
 ## Installation
 
 First things first, we need to install the tools we'll be using.
 
-* Xpdf (We'll be using the pdftotext)
-* tesseract
+* [Xpdf](https://www.xpdfreader.com/) is an open source toolkit to work with pdfs. We'll be using its tool, [pdftotext](https://www.xpdfreader.com/pdftotext-man.html).
+
+* [tesseract](https://github.com/tesseract-ocr/tesseract/wiki) is our OCR engine. It was first developed by HP but for the last decade or so it's been maintained by Google.
+
 * ImageMagick
 
+Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation 
+    * Xpdf [documentation]()
+    * tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
+    * ImageMagick [documentation]()
 
-we need to install our OCR engine, [tesseract]('https://github.com/tesseract-ocr/tesseract/wiki').
-
-Since this is a Mac-based class, we'll following those install instructions but you can find Windows and Linux in the tesseract [documention]('https://github.com/tesseract-ocr/tesseract/wiki').
-
-For Mac, we'll be using the Homebrew package manager. So for tesseract, you will use the following command.
+For Mac, we'll be using the Homebrew package manager. You can install it [here](). So for tesseract, you will use the following command.
 ```
 brew install tesseract
 ```
 
-And for Xpdf, you will use this.
+For Xpdf, you will use this.
 ```
 brew install xpdf
 ```
 
+And for ImageMagick you will use this
+```
+brew install imagemagick
+```
+
 ## Files
+
+We'll  be using a number of files for our examples. You can find them in [here](/files).
+
 
 
 ## Scenario 1: Analyzing a computer generated pdf with embedded text (searchable pdf)
@@ -45,21 +54,30 @@ There are many GUI software programs you can use to do this. They all have stren
 
 For this tutorial, we're going to use an open source powertool from Xpdf called pdftotext. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
 
-```
-pdftotext /path/to/my/file.pdf name-of-my-text-file.txt
-```
+I often use this tool to check for hidden text, particularly in documents that are redacted. Our example is from just a few months ago when lawyers for Paul Manafort accidentally filed a document that wasn't properly redacted. Reporters, including my colleague Michael Balsamo, quickly realized that even though the document contained blacked out sections, the text of those passages was still present. That text [revealed](https://www.apnews.com/608b9fcbca5941348e2ac8796e94c8cd) that Manafort had shared polling data with a Russian associate during the 2016 election.
 
-Our example is going to be a rather well known one from just a few months ago. I often use this tool to check for hidden text, particularly in documents that are redacted. 
+One way to get to this text is just copy and paste the sections out. But this can be tedious, particularly if there are a lot of sections or you have a large document. A faster and easier to read method is what we're going to do with Xpdf's pdftotext.
 
+Our [document](files/manafort/Manafort_filing.pdf) has several sections like this.
 
 ![Alt Text](/imgs/Manafort_2.png)
 
+But since we can tell that there's text underneath there, let's run it through pdftotext and see what comes out.
 
+#### pdftotext command construction
 
+```
+pdftotext /path/to/my/file.pdf name-of-my-text-file.txt
+```
+So for our file it would look something like this.
+
+```
+pdftotext Manafort_filing.pdf manafort_filing.txt
+```
 
 But that's just one limited use case. Extracting this text can then be fed into databases or used for visualations.
 
-EXAMPLES HERE.
+Let's take a look another one involving tabular data.
 
 
 ## Scenario 2: Extracting text from image files
