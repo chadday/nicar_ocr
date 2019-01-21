@@ -133,6 +133,14 @@ ImageMagick command construction
 convert [options ...] file [ [options ...] file ...] [options ...] file
 ```
 
+If you're familiar with photography or document scanning, you know that the proper image resolution is essential for electronic imaging. When it comes to OCR, this is even more true. 
+
+The general standard for OCR is 300 dpi, or 300 dots per inch, though [ABBYY recommends](https://knowledgebase.abbyy.com/article/489) using 400-600 for font sizes smaller than 10 point. In ImageMagick, this is specified using the density flag. Below we are telling ImageMagick to take our pdf document and convert it to an image with 300 dpi.
+
+```
+convert -density 300 Exhibit_342.pdf
+```
+
 Explanation of best practices, why density and resolution matters, getting the best results
 
 
