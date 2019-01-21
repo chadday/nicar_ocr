@@ -47,10 +47,10 @@ We'll  be using a number of files for our examples. You can find them in [here](
 This is probably the easiest problem to solve dealing with pdfs. We want to extract the text from a searchable pdf for analysis of some type.
 
 There are many GUI software programs you can use to do this. They all have strengths and weaknesses.
-    Cometdocs
-    Tabula (free and great for tabular data!)
-    Adobe Acrobat Pro ($$)
-    Abbyy Finereader ($$ but also very accurate)
+    * Cometdocs
+    * Tabula (free and great for tabular data!)
+    * Adobe Acrobat Pro ($$)
+    * Abbyy Finereader ($$ but also very accurate)
 
 For this tutorial, we're going to use an open source powertool from Xpdf called pdftotext. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
 
