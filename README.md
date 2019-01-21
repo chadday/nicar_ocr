@@ -79,12 +79,21 @@ pdftotext Manafort_filing.pdf manafort_filing.txt
 
 But that's just one limited use case. Extracting this text can then be fed into databases or used for visualations.
 
-Let's take a look another one involving tabular data.
+Let's take a look another one of our files involving tabular data, found [here](). This is a salary roster of Trump White House employees. We'll be using a single image page of this file for a later example.
+
+
+<-- LEFT OFF HERE -->
+
 
 
 ## Scenario 2: Extracting text from image files
 
 #### Basics of tesseract
+
+```
+tesseract imagename outputbase [-l lang] [--oem ocrenginemode] [--psm pagesegmode] [configfiles...]
+```
+
 
 ```
 tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]
