@@ -41,8 +41,6 @@ brew install imagemagick
 
 We'll  be using a number of files for our examples. You can find them in [here](/files).
 
-
-
 ## Scenario 1: Analyzing a computer generated pdf with embedded text (searchable pdf)
 
 This is probably the easiest problem to solve dealing with pdfs. We want to extract the text from a searchable pdf for analysis of some type.
@@ -56,9 +54,9 @@ There are many GUI software programs you can use to do this. They all have stren
 
 For this tutorial, we're going to use an open source powertool from Xpdf called pdftotext. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
 
-I often use this tool to check for hidden text, particularly in documents that are redacted. Our example is from just a few months ago when lawyers for Paul Manafort accidentally filed a document that wasn't properly redacted. Reporters, including my colleague Michael Balsamo, quickly realized that even though the document contained blacked out sections, the text of those passages was still present. That text [revealed](https://www.apnews.com/608b9fcbca5941348e2ac8796e94c8cd) that Manafort had shared polling data with a Russian associate during the 2016 election.
+I often use this tool to check for hidden text, particularly in documents that are redacted. Our example is from just a few months ago when lawyers for Paul Manafort accidentally filed a document that wasn't properly redacted. Reporters, including my colleague Michael Balsamo, quickly realized that even though the document contained blacked out sections, the text of those passages was still present. That text [revealed](https://www.apnews.com/608b9fcbca5941348e2ac8796e94c8cd) Manafort had shared polling data with a Russian associate during the 2016 election.
 
-One way to get to this text is just copy and paste the sections out. But this can be tedious, particularly if there are a lot of sections or you have a large document. A faster and easier to read method is what we're going to do with Xpdf's pdftotext.
+One way to get to this text is just to copy and paste the sections out. But this can be tedious, particularly if there are a lot of sections or you have a large document. A faster and easier to read method is what we're going to do with Xpdf's pdftotext.
 
 Our [document](files/manafort/Manafort_filing.pdf) has several sections like this.
 
@@ -79,7 +77,7 @@ pdftotext Manafort_filing.pdf manafort_filing.txt
 
 But that's just one limited use case. Extracting this text can then be fed into databases or used for visualations.
 
-Let's take a look another one of our files involving tabular data, found [here](). This is a salary roster of Trump White House employees. We'll be using a single image page of this file for a later example.
+Let's take a look at another one of our files involving tabular data, found [here](). This is a salary roster of Trump White House employees. We'll be using a single image page of this file for a later example.
 
 
 <-- LEFT OFF HERE -->
@@ -156,6 +154,12 @@ Let's make a searchable pdf.
 
 
 ## Sources and references
-I created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-training/conferences/nicar-2019') but it relies on many helpful open source resources that deserve credit. Each of the tutorials, tipsheets and documentation were used in the creation of this tutorial and deserve credit for their excellent work and thanks for sharing it with the world.
+I created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-training/conferences/nicar-2019') but it relies on many helpful open source resources that deserve credit. They are listed below. Thanks for sharing your work with the rest of the world.
+
+[Tesseract](https://github.com/tesseract-ocr/tesseract/wiki/Command-Line-Usage) documentation
+
+[ImageMagick](https://www.imagemagick.org/script/command-line-processing.php) documentation
+
+[pdftotext](https://www.xpdfreader.com/pdftotext-man.html) documentation
 
 
