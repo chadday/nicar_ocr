@@ -206,7 +206,7 @@ This blows up the images, adjusts the image resolution, ups the contrast to help
 convert -resize 400% -density 450 -brightness-contrast 5x0 Walker16.tiff -set colorspace Gray -separate -average -depth 8 -strip Walker16_enh.tiff
 ```
 
-Next we use ImageMagick's crop to split it up into a mutlti-page pdf. (Add details of how to find the dimensions)
+Next we use ImageMagick's crop to split it up into a multi-page pdf. (Add details of how to find the dimensions)
 
 ```
 convert Walker16_enh.tiff -crop 3172x4200 Walker16_to_ocr.tiff
