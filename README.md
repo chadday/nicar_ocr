@@ -193,17 +193,26 @@ Let's make a searchable pdf.
 
 OCRing is not a perfect science and most of the time, it isn't simple. One recent example: public financial disclosures of federal judges are multi-page documents but they are released as extremely long, single tiff files.
 
-![Alt Text]()
+![Alt Text](/imgs/Walker16.png)
+
+And you'll notice that the pages need to be split.
+
+![Alt Text](/imgs/Walker16_pages.png)
 
 The workflow below walks through one example of how to solve the problem using ImageMagick and Tesseract.
 
+This blows up the images, adjusts the image resolution, ups the contrast to help bring out the text. It then outputs a grayscale version, set at 8-bit depth, named Walker16_enh.tiff.
 ```
 convert -resize 400% -density 450 -brightness-contrast 5x0 Walker16.tiff -set colorspace Gray -separate -average -depth 8 -strip Walker16_enh.tiff
 ```
 
+Next we use ImageMagick's crop to split it up into a mutlti-page pdf. (Add details of how to find the dimensions)
+
 ```
 convert Walker16_enh.tiff -crop 3172x4200 Walker16_to_ocr.tiff
 ```
+
+Then we convert that image into a searchable pdf.
 
 ```
 tesseract Walker16_to_ocr.tiff -l eng Walker16 pdf
