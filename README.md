@@ -189,7 +189,27 @@ Let's look at the text
 Let's make a searchable pdf.
 
 
-## Where to go from here: 
+## Where to go from here:
+
+OCRing is not a perfect science and most of the time, it isn't simple. One recent example: public financial disclosures of federal judges are multi-page documents but they are released as extremely long, single tiff files.
+
+![Alt Text]()
+
+The workflow below walks through one example of how to solve the problem using ImageMagick and Tesseract.
+
+```
+convert -resize 400% -density 450 -brightness-contrast 5x0 Walker16.tiff -set colorspace Gray -separate -average -depth 8 -strip Walker16_enh.tiff
+```
+
+```
+convert Walker16_enh.tiff -crop 3172x4200 Walker16_to_ocr.tiff
+```
+
+```
+tesseract Walker16_to_ocr.tiff -l eng Walker16 pdf
+```
+
+Exploring the various options and fine-tuning your skills with ImageMagick can help prepare you for the next big step: Batch processing of documents, which you can hear more about [here at NICAR](https://www.ire.org/events-and-training/event/3433/4227/).
 
 
 ## Sources and references
