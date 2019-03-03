@@ -18,7 +18,7 @@ First things first, we need to install the tools we'll be using.
 
 Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation.
 
-* Xpdf [documentation]()
+* Xpdf [documentation](https://www.xpdfreader.com/download.html)
 * tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
 * ImageMagick [documentation]()
 
@@ -112,51 +112,54 @@ You should get something like this (very bad stuff):
 
 Now that we've walked through the basics of text extraction with computer generated (nice) pdfs, let's go onto the harder use cases.
 
-## Scenario 2: Extracting text from image files
+## Scenario 2: Basic text extraction from image files
 
 Extracting text from image files is perhaps one of the most common problems reporters face when they get data from government agencies or are trying to build their own databases from scratch (paper records, the dreaded image pdf of an Excel spreadsheet, etc.) To do this, we use OCR and in this example, Tesseract.
 
 #### Basics of tesseract
 
-```
-tesseract imagename outputbase [-l lang] [--oem ocrenginemode] [--psm pagesegmode] [configfiles...]
-```
+Tesseract has many options. You can see them by typing:
 
 ```
-tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]
+tesseract -h
+```
+
+We're not going to go into detail on many of these options but you can read me [here](https://github.com/tesseract-ocr/tesseract/wiki)
+
+The basic command structure looks like this:
+
+```
+tesseract imagename outputbase [-l lang] [--oem ocrenginemode] [--psm pagesegmode] [configfiles...]
 ```
 
 Let's look at a single image file. In this case, that's the wh_salaries.png file in our imgs folder. This is the first page of our White House salaries pdf but notice that it is not searchable.
 
 This is perhaps the most simple use of tesseract. We will feed in our image file and have it output a searchable pdf.
 
-In the imgs directory, use the following command. 
+In ```/files/single_img``` directory, use the following command.
 
 ```
 tesseract wh_salaries.png out pdf
 ```
 
-You should get a file name out.pdf.
+You start with a file like this:
 
+![Alt Text](/imgs/wh_salaries.png)
 
-#### Using tesseract
+You should get a file name out.pdf and you can see that it's searchable.
 
-tesseract command construction
+![Alt Text](/imgs/searchable_salaries.png)
 
-```
-tesseract imagename|stdin outputbase|stdout [options...] [configfile...]
-```
-
-
-```
-tesseract myscan.png out pdf
-```
 
 ## Scenario 3: Combining our skills to make a searchable pdf out of an image pdf.
 
 #### Converting pdfs to images to prepare for OCR using ImageMagick
 
 ImageMagick command construction
+
+Explanation of ImageMagick here.
+
+ImageMagick has some great documentation that explains all of its many options. You can find it [here](http://www.imagemagick.org/script/command-line-options.php#page)
 
 ```
 convert [options ...] file [ [options ...] file ...] [options ...] file
@@ -174,7 +177,6 @@ Explanation of best practices, why density and resolution matters, getting the b
 
 
 Let's do this with our Manafort documents.
-
 
 ```
 convert -density 300 Exhibit_342.pdf -depth 8 -strip -background white -alpha off exhibit_342.tiff
