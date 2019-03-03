@@ -93,24 +93,34 @@ pdftotext -table /path/to/my/file name-of-my-text-file.txt
 We'll test it out on the [file](/files/tabular/07012018-report-final.pdf). You can ```cd``` to it in the ```/files/tabular``` directory.
 
 ```
-pdftotext -table 07012018-report-final.pdf -tabular-test.txt
+pdftotext -table 07012018-report-final.pdf tabular-test.txt
 ```
 
 You should get something like this: 
 
-![Alt Text]()
+![Alt Text](/imgs/structured.png)
 
+For comparison, try using just pdftotext.
 
+```
+pdftotext 07012018-report-final.pdf test.txt
+```
 
+You should get something like this (very bad stuff):
+
+![Alt Text](/imgs/unstructured.png)
+
+Now that we've walked through the basics of text extraction with computer generated (nice) pdfs, let's go onto the harder use cases.
 
 ## Scenario 2: Extracting text from image files
+
+Extracting text from image files is perhaps one of the most common problems reporters face when they get data from government agencies or are trying to build their own databases from scratch (paper records, the dreaded image pdf of an Excel spreadsheet, etc.) To do this, we use OCR and in this example, Tesseract.
 
 #### Basics of tesseract
 
 ```
 tesseract imagename outputbase [-l lang] [--oem ocrenginemode] [--psm pagesegmode] [configfiles...]
 ```
-
 
 ```
 tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]
