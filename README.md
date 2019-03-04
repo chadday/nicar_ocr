@@ -176,17 +176,20 @@ convert -density 300 Exhibit_342.pdf
 Explanation of best practices, why density and resolution matters, getting the best results
 
 
-Let's do this with our Manafort documents.
+Let's do this with our Manafort document.
 
 ```
-convert -density 300 Exhibit_342.pdf -depth 8 -strip -background white -alpha off exhibit_342.tiff
+convert -density 300 Exhibit_342.pdf -depth 8 -strip -background white -alpha off Exhibit_342.tiff
 ```
 
 #### Now we run this tiff through tesseract
 
-Let's look at the text
+```
+tesseract exhibit_342.tiff -l eng Exhibit_342 pdf
+```
 
-Let's make a searchable pdf.
+(Insert photo here)
+
 
 
 ## Where to go from here:
