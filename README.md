@@ -155,9 +155,9 @@ You should get a file name out.pdf and you can see that it's searchable.
 
 #### Converting pdfs to images to prepare for OCR using ImageMagick
 
-ImageMagick command construction
+So far, we've covered extracting text from computer generated files and doing some basic OCR. Now, we'll turn to creating searchable pdfs out of image files. To do this, we'll be adding another command line tool called ImageMagick, an image editing and manipulation software.
 
-Explanation of ImageMagick here.
+We will be using the ```convert``` tool from ImageMagick.
 
 ImageMagick has some great documentation that explains all of its many options. You can find it [here](http://www.imagemagick.org/script/command-line-options.php#page)
 
@@ -169,23 +169,35 @@ If you're familiar with photography or document scanning, you know that the prop
 
 The general standard for OCR is 300 dpi, or 300 dots per inch, though [ABBYY recommends](https://knowledgebase.abbyy.com/article/489) using 400-600 for font sizes smaller than 10 point. In ImageMagick, this is specified using the density flag. Below we are telling ImageMagick to take our pdf document and convert it to an image with 300 dpi.
 
+
+#### Example with the image file Manafort document
+
+First, we have to convert it to an image so we can run it through tesseract.
+
+We'll use ImageMagick's ```convert``` tool.
+
 ```
-convert -density 300 Exhibit_342.pdf
+convert russia_findings.pdf russia_findings.tiff
 ```
+
+On a Mac, an easy way to find the dpi of an image is to use Preview. Open the image in preview, go to ```Tools``` and click ```Show Inspector```.
+
+So let's take a look at our image we just created.
+
 
 Explanation of best practices, why density and resolution matters, getting the best results
 
 
-Let's do this with our Manafort document.
+Let's do this with our Russia document.
 
 ```
-convert -density 300 Exhibit_342.pdf -depth 8 -strip -background white -alpha off Exhibit_342.tiff
+convert -density 300 russia_findings.pdf -depth 8 -strip -background white -alpha off russia_findings.tiff
 ```
 
 #### Now we run this tiff through tesseract
 
 ```
-tesseract exhibit_342.tiff -l eng Exhibit_342 pdf
+tesseract russia_findings.tiff -l eng russia_findings_enh pdf
 ```
 
 (Insert photo here)
