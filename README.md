@@ -20,7 +20,7 @@ Since this is a Mac-based class, we'll be following Mac install instructions but
 
 * Xpdf [documentation](https://www.xpdfreader.com/download.html)
 * tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
-* ImageMagick [documentation]()
+* ImageMagick [documentation](http://www.imagemagick.org/script/command-line-processing.php)
 
 For Mac, we'll be using the Homebrew package manager. You can install it [here](). So for tesseract, you will use the following command.
 ```
@@ -80,7 +80,6 @@ But that's just one limited use case. Extracting this text can then be fed into 
 Let's take a look at another one of our files involving tabular data, found [here](/files/tabular/07012018-report-final.pdf). This is a salary roster of Trump White House employees. We'll be using a single image page of this file for a later example.
 
 ![Alt Text](/imgs/wh_salaries.png)
-
 
 As mentioned before, Tabula is a great tool for getting tabular data out of pdf files, but I wanted to give you another option using pdftotext that works well with fixed-width data files like this White House salaries listing. It also has the added benefit of being easily scriptable.
 
@@ -149,7 +148,6 @@ You start with a file like this:
 You should get a file name out.pdf and you can see that it's searchable.
 
 ![Alt Text](/imgs/searchable_salaries.png)
-
 
 ## Scenario 3: Combining our skills to make a searchable pdf out of an image pdf.
 
