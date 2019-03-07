@@ -168,7 +168,9 @@ If you're familiar with photography or document scanning, you know that the prop
 The general standard for OCR is 300 dpi, or 300 dots per inch, though [ABBYY recommends](https://knowledgebase.abbyy.com/article/489) using 400-600 for font sizes smaller than 10 point. In ImageMagick, this is specified using the density flag. Below we are telling ImageMagick to take our pdf document and convert it to an image with 300 dpi.
 
 
-#### Example with the image file Manafort document
+#### Example with the image file Russia findings document
+
+![Alt Text](/imgs/Screen%20Shot%202019-03-07%20at%208.51.54%20AM.png)
 
 First, we have to convert it to an image so we can run it through tesseract.
 
@@ -182,9 +184,23 @@ On a Mac, an easy way to find the dpi of an image is to use Preview. Open the im
 
 So let's take a look at our image we just created.
 
+#### Open in Preview
 
-Explanation of best practices, why density and resolution matters, getting the best results
+![Alt Text](/imgs/preview.png)
 
+#### Go to 'Show Inspector'
+
+![Alt Text](/imgs/show_inspector.png)
+
+#### Inspector pane 1
+
+![Alt Text](/imgs/inspector_1.png)
+
+#### Inspector pane 2
+
+![Alt Text](/imgs/inspector_2.png)
+
+So our dpi is ```72```, which likely is fine for this document but let's go ahead and up that using convert. This will increase the file size of the tiff we create (so warning about file bloat) but it's only a temporary file that we're using to get the best text recognition.
 
 Let's do this with our Russia document.
 
@@ -192,13 +208,34 @@ Let's do this with our Russia document.
 convert -density 300 russia_findings.pdf -depth 8 -strip -background white -alpha off russia_findings.tiff
 ```
 
+So let's break this down.
+
+```convert``` - invokes ImageMagick's convert tool
+
+```-density``` - ups the dpi of our image to 300
+
+```russia_finding.pdf ``` - our file that we're converting to an image.
+
+```-depth 8``` - "This the number of bits in a color sample within a pixel. Use this option to specify the depth of raw images whose depth is unknown such as GRAY, RGB, or CMYK, or to change the depth of any image after it has been read", according to ImageMagick documentation.
+
+```-strip``` - strips off any junk on the file (profiles, comments, etc.)
+
+```-background white``` - sets the background to white to help with contrasting our text
+
+```-alpha off``` -generally the transparency of the image. A great explanation [here](https://www.quora.com/What-exactly-is-an-alpha-channel-in-an-image)
+
 #### Now we run this tiff through tesseract
 
 ```
 tesseract russia_findings.tiff -l eng russia_findings_enh pdf
 ```
 
-(Insert photo here)
+And you've got a searchable pdf!
+
+![Alt Text]()
+
+
+![Alt Text]()
 
 
 
