@@ -14,7 +14,7 @@ First things first, we need to install the tools we'll be using.
 
 * [tesseract](https://github.com/tesseract-ocr/tesseract/wiki) is our OCR engine. It was first developed by HP but for the last decade or so it's been maintained by Google.
 
-* ImageMagick
+* [ImageMagick](http://www.imagemagick.org/script/command-line-processing.php)
 
 Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation.
 
@@ -231,12 +231,6 @@ tesseract russia_findings.tiff -l eng russia_findings_enh pdf
 ```
 
 And you've got a searchable pdf!
-
-![Alt Text]()
-
-
-![Alt Text]()
-
 
 
 ## Where to go from here:
