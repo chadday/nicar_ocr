@@ -1,10 +1,9 @@
 # nicar_ocr
-A tutorial on optical character recognition using tesseract, ImageMagick and other open source tools
+A tutorial on extracting text from PDFs and optical character recognition using tesseract, ImageMagick and other open source tools
 
 ## Introduction
 
-Optical Character Recognition, or OCR, is a key tool in today's journalism. MORE HERE.
-
+This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or even worse an image PDF. We'll first walk through how to do some quick text extraction using a command line tool. Then we'll step up to Optical Character Recognition, or OCR, to work on image files. 
 
 ## Installation
 
@@ -14,7 +13,7 @@ First things first, we need to install the tools we'll be using.
 
 * [tesseract](https://github.com/tesseract-ocr/tesseract/wiki) is our OCR engine. It was first developed by HP but for the last decade or so it's been maintained by Google.
 
-* [ImageMagick](http://www.imagemagick.org/script/command-line-processing.php)
+* [ImageMagick](http://www.imagemagick.org/script/command-line-processing.php) is an open source image processing and conversion power tool.
 
 Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation.
 
@@ -232,6 +231,18 @@ tesseract russia_findings.tiff -l eng russia_findings_enh pdf
 
 And you've got a searchable pdf!
 
+
+Let's take a look at the underlying text now.
+
+```
+pdftotext russia_findings_enh.pdf russia_text.txt
+```
+
+We also could have just outputted directly to a text file like this.
+
+```
+tesseract russia_findings.tiff -l eng russia_findings_enh txt
+```
 
 ## Where to go from here:
 
