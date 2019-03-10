@@ -31,10 +31,14 @@ For Xpdf, you will use this.
 brew install xpdf
 ```
 
-And for ImageMagick you will use this
+We will also install libtiff, a dependency for ImageMagick that we will need.
 ```
 brew install libtiff
-brew install imagemagick --with-libtiff
+```
+
+And for ImageMagick you will use this
+```
+brew install imagemagick
 ```
 
 ## Files
