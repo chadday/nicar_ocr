@@ -3,7 +3,7 @@ A tutorial on extracting text from PDFs and optical character recognition using 
 
 ## Introduction
 
-This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or even worse an image PDF. We'll first walk through how to do some quick text extraction using a command line tool. Then we'll step up to Optical Character Recognition, or OCR, to work on image files. 
+This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or even worse an image PDF. We'll first walk through how to do some quick text extraction using a command line tool. Then we'll step up to Optical Character Recognition, or OCR, to work on image files.
 
 ## Installation
 
@@ -33,7 +33,8 @@ brew install xpdf
 
 And for ImageMagick you will use this
 ```
-brew install imagemagick
+brew install libtiff
+brew install imagemagick --with-libtiff
 ```
 
 ## Files
@@ -166,6 +167,47 @@ If you're familiar with photography or document scanning, you know that the prop
 
 The general standard for OCR is 300 dpi, or 300 dots per inch, though [ABBYY recommends](https://knowledgebase.abbyy.com/article/489) using 400-600 for font sizes smaller than 10 point. In ImageMagick, this is specified using the density flag. Below we are telling ImageMagick to take our pdf document and convert it to an image with 300 dpi.
 
+#### Important 
+
+Before we go on from here, let's make sure we have the tiff delegate installed. You can check like this:
+
+```
+convert -list configure
+```
+
+Scroll down to ```DELEGATES``` and make sure it includes ```tiff```
+
+For example:
+
+```
+DELEGATES      bzlib mpeg freetype jng jpeg lzma png tiff xml zlib
+```
+
+#### IF you don't have tiff in the list, follow these steps:
+
+First check to make sure that libtiff is installed. You can do this by running 
+
+```
+brew list
+```
+If libtiff is not in the list, then install it using brew
+
+```
+brew install libtiff
+```
+
+Now check to make sure that imagemagick is recognizing that it is an installed dependency
+```
+brew info imagemagick
+```
+If you're good to go, it should look something like this:
+
+```
+==> Dependencies
+Build: pkg-config ✔
+Required: freetype ✔, jpeg ✔, libheif ✔, libomp ✔, libpng ✔, libtiff ✔, libtool ✔, little-cms2 ✔, openexr ✔, openjpeg ✔, webp ✔, xz ✔
+```
+Now that we've installed the tiff delegate, let's continue on with our example.
 
 #### Example with the image file Russia findings document
 
@@ -261,7 +303,9 @@ This blows up the images, adjusts the image resolution, ups the contrast to help
 convert -resize 400% -density 450 -brightness-contrast 5x0 Walker16.tiff -set colorspace Gray -separate -average -depth 8 -strip Walker16_enh.tiff
 ```
 
-Next we use ImageMagick's crop to split it up into a multi-page pdf. (Add details of how to find the dimensions)
+Next we use ImageMagick's crop to split it up into a multi-page pdf. 
+
+COMING SOON HERE: More details of how to find the dimensions.
 
 ```
 convert Walker16_enh.tiff -crop 3172x4200 Walker16_to_ocr.tiff
