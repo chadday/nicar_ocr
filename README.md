@@ -344,5 +344,3 @@ I created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-trainin
 [ImageMagick](https://www.imagemagick.org/script/command-line-processing.php) documentation
 
 [pdftotext](https://www.xpdfreader.com/pdftotext-man.html) documentation
-
-
