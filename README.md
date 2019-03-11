@@ -22,7 +22,7 @@ Since this is a Mac-based class, we'll be following Mac install instructions but
 * Xpdf [documentation](https://www.xpdfreader.com/download.html)
 * tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
 * ImageMagick [documentation](http://www.imagemagick.org/script/command-line-processing.php)
-
+* Ghostscript [documentation](https://ghostscript.com/doc/9.21/Install.htm)
 
 For Mac, we'll be using the Homebrew package manager. You can install it [here](). So for tesseract, you will use the following command.
 ```
