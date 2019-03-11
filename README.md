@@ -15,11 +15,14 @@ First things first, we need to install the tools we'll be using.
 
 * [ImageMagick](http://www.imagemagick.org/script/command-line-processing.php) is an open source image processing and conversion power tool.
 
+* [Ghostscript](https://www.ghostscript.com/index.html) is an interpreter for PDFs and Adobe's PostScript language.
+
 Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation.
 
 * Xpdf [documentation](https://www.xpdfreader.com/download.html)
 * tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
 * ImageMagick [documentation](http://www.imagemagick.org/script/command-line-processing.php)
+
 
 For Mac, we'll be using the Homebrew package manager. You can install it [here](). So for tesseract, you will use the following command.
 ```
@@ -36,8 +39,7 @@ We will also install libtiff, a dependency for ImageMagick that we will need.
 brew install libtiff
 ```
 
-Then we'll install ghostscipt, which is an interpreter for Adobe's PostScript language and for PDF.
-
+Then we'll install ghostscipt
 ```
 brew install ghostscript
 ```
