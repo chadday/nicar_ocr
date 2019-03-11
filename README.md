@@ -36,7 +36,13 @@ We will also install libtiff, a dependency for ImageMagick that we will need.
 brew install libtiff
 ```
 
-And for ImageMagick you will use this
+Then we'll install ghostscipt, which is an interpreter for Adobe's PostScript language and for PDF.
+
+```
+brew install ghostscript
+```
+
+And for ImageMagick you will use this.
 ```
 brew install imagemagick
 ```
@@ -189,21 +195,27 @@ DELEGATES      bzlib mpeg freetype jng jpeg lzma png tiff xml zlib
 
 #### IF you don't have tiff in the list, follow these steps:
 
-First check to make sure that libtiff is installed. You can do this by running 
+First check to make sure that libtiff and ghostscript are installed. You can do this by running
 
 ```
 brew list
 ```
-If libtiff is not in the list, then install it using brew
 
+If ghostscript is not in the list, then install it using brew.
+```
+brew install ghostscript
+```
+
+If libtiff is not in the list, then install it using brew.
 ```
 brew install libtiff
 ```
 
-Now check to make sure that imagemagick is recognizing that it is an installed dependency
+Now check to make sure that imagemagick is recognizing libtiff is installed as a dependency.
 ```
 brew info imagemagick
 ```
+
 If you're good to go, it should look something like this:
 
 ```
@@ -211,7 +223,7 @@ If you're good to go, it should look something like this:
 Build: pkg-config ✔
 Required: freetype ✔, jpeg ✔, libheif ✔, libomp ✔, libpng ✔, libtiff ✔, libtool ✔, little-cms2 ✔, openexr ✔, openjpeg ✔, webp ✔, xz ✔
 ```
-Now that we've installed the tiff delegate, let's continue on with our example.
+Now that we've installed ghostscript and the tiff delegate, let's continue on with our example.
 
 #### Example with the image file Russia findings document
 
