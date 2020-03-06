@@ -306,7 +306,7 @@ tesseract russia_findings.tiff -l eng russia_findings_enh txt
 
 ## Where to go from here:
 
-OCRing is not a perfect science and most of the time, it isn't simple. One recent example: public financial disclosures of federal judges are multi-page documents but they are released as extremely long, single tiff files.
+OCRing is not a perfect science and most of the time, it isn't simple. One recent example: public financial disclosures of federal judges are multi-page documents but they are released as extremely long, single tiff files. You can find a similar test file [here](https://drive.google.com/open?id=11YpC2-0yYyuJL7AJnvG48q9H8hrrDQon)
 
 ![Alt Text](/imgs/Walker16.png)
 
@@ -323,7 +323,13 @@ convert -resize 400% -density 450 -brightness-contrast 5x0 Walker16.tiff -set co
 
 Next we use ImageMagick's crop to split it up into a multi-page pdf. 
 
-COMING SOON HERE: More details of how to find the dimensions.
+To find the dimensions, first use Preview's Inspector tool. You 'll see the dimensions of the entire image file. (NOTE: This screenshot is from a different file since I added this later.)
+
+![Alt Text](/imgs/find_inspector.png)
+
+The first value is the width and the second value is the length. To get the pixel length of each page, just divide by the number of pages you should have in the final file.
+
+![Alt Text](/imgs/dimensions.png)
 
 ```
 convert Walker16_enh.tiff -crop 3172x4200 Walker16_to_ocr.tiff
