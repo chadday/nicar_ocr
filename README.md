@@ -1,13 +1,13 @@
-# nicar_ocr
-A tutorial on extracting text from PDFs and optical character recognition using tesseract, ImageMagick and other open source tools
+# NICAR: Advanced PDF processing with OCR and command-line tools
+A tutorial on extracting text from PDFs and optical character recognition using tesseract, ImageMagick and other open source tools. Updated for NICAR 2022.
 
 ## Introduction
 
-This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or even worse an image PDF. We'll first walk through how to do some quick text extraction using a command line tool. Then we'll step up to Optical Character Recognition, or OCR, to work on image files.
+This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or worse an image PDF. We'll first walk through how extract text from a computer-generated PDF using a command line tool. Then we'll step up to Optical Character Recognition, or OCR, to work on image files. 
 
 ## Installation
 
-First things first, we need to install the tools we'll be using.
+First things first, we need to install the tools we'll be using. (NICAR attendees using lab laptops: IRE has already completed the install).
 
 * [Xpdf](https://www.xpdfreader.com/) is an open source toolkit to work with pdfs. We'll be using its tool, [pdftotext](https://www.xpdfreader.com/pdftotext-man.html).
 
@@ -17,36 +17,43 @@ First things first, we need to install the tools we'll be using.
 
 * [Ghostscript](https://www.ghostscript.com/index.html) is an interpreter for PDFs and Adobe's PostScript language.
 
-Since this is a Mac-based class, we'll be following Mac install instructions but you can find Windows and Linux in the following documentation.
+This class will be following the Mac install instructions but you can find Windows and Linux in the following documentation.
 
 * Xpdf [documentation](https://www.xpdfreader.com/download.html)
 * tesseract [documention](https://github.com/tesseract-ocr/tesseract/wiki).
 * ImageMagick [documentation](http://www.imagemagick.org/script/command-line-processing.php)
 * Ghostscript [documentation](https://ghostscript.com/doc/9.21/Install.htm)
 
-For Mac, we'll be using the Homebrew package manager. You can install it [here](). So for tesseract, you will use the following command.
-```
+For Mac, we'll be using the Homebrew package manager. You can install it [here](https://brew.sh/). 
+
+So for tesseract, you will use the following command.
+```bash
 brew install tesseract
 ```
 
 For Xpdf, you will use this.
-```
+```bash
 brew install xpdf
 ```
 
 We will also install libtiff, a dependency for ImageMagick that we will need.
-```
+```bash
 brew install libtiff
 ```
 
 Then we'll install ghostscipt
-```
+```bash
 brew install ghostscript
 ```
 
 And for ImageMagick you will use this.
-```
+```bash
 brew install imagemagick
+```
+
+To install all of them at once, you can run the following
+```bash
+brew install xpdf tesseract libtiff ghostscript imagemagick
 ```
 
 ## Files
@@ -66,9 +73,11 @@ There are many GUI software programs you can use to do this. They all have stren
 
 For this tutorial, we're going to use an open source powertool from Xpdf called pdftotext. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
 
-I often use this tool to check for hidden text, particularly in documents that are redacted. Our example is from just a few months ago when lawyers for Paul Manafort accidentally filed a document that wasn't properly redacted. Reporters, including my colleague Michael Balsamo, quickly realized that even though the document contained blacked out sections, the text of those passages was still present. That text [revealed](https://www.apnews.com/608b9fcbca5941348e2ac8796e94c8cd) Manafort had shared polling data with a Russian associate during the 2016 election.
+I often use this tool to check for hidden text, particularly in documents that have redactions. 
 
-One way to get to this text is just to copy and paste the sections out. But this can be tedious, particularly if there are a lot of sections or you have a large document. A faster and easier to read method is what we're going to do with Xpdf's pdftotext.
+Our example is from 2019 when lawyers for Paul Manafort accidentally filed a document in court that wasn't properly redacted — even though the document contained blacked out sections, the text was still present in the document. You can read more about it [here](https://www.apnews.com/608b9fcbca5941348e2ac8796e94c8cd).
+
+One way to get to this text is just to copy and paste the sections out. But this can be tedious if there are a lot of sections or you have a large document. A faster and easier method is Xpdf's pdftotext.
 
 Our [document](files/manafort/Manafort_filing.pdf) has several sections like this.
 
@@ -78,16 +87,22 @@ But since we can tell that there's text underneath there, let's run it through p
 
 #### pdftotext command construction
 
-```
+```bash
 pdftotext /path/to/my/file.pdf name-of-my-text-file.txt
 ```
-So for our file it would look something like this.
+So for our file it would look something like this within the files directory.
 
-```
+```bash
 pdftotext Manafort_filing.pdf manafort_filing.txt
 ```
 
-But that's just one limited use case. Extracting this text can then be fed into databases or used for visualations.
+You can also run it from the repo parent directory.
+
+```bash
+pdftotext files/manafort/Manafort_filing.pdf files/manafort/manafort_filing.txt
+```
+
+Now, if we look in our newly created text file, we can find full extracted text — including the parts that are blacked out in the PDF. 
 
 Let's take a look at another one of our files involving tabular data, found [here](/files/tabular/07012018-report-final.pdf). This is a salary roster of Trump White House employees. We'll be using a single image page of this file for a later example.
 
@@ -97,14 +112,20 @@ As mentioned before, Tabula is a great tool for getting tabular data out of pdf 
 
 ### pdftotext command for tables
 
-```
+```bash
 pdftotext -table /path/to/my/file name-of-my-text-file.txt
 ```
 
-We'll test it out on the [file](/files/tabular/07012018-report-final.pdf). You can ```cd``` to it in the ```/files/tabular``` directory.
+We'll test it out on the [file](/files/tabular/07012018-report-final.pdf). You can ```cd``` to it in the ```/files/tabular``` directory or just use the path.
 
-```
+```bash
 pdftotext -table 07012018-report-final.pdf tabular-test.txt
+```
+
+Or use this command from the repo parent directory
+
+```bash
+pdftotext -table files/tabular/07012018-report-final.pdf files/tabular/tabular-test.txt```
 ```
 
 You should get something like this: 
@@ -113,25 +134,25 @@ You should get something like this:
 
 For comparison, try using just pdftotext.
 
-```
-pdftotext 07012018-report-final.pdf test.txt
+```bash
+pdftotext files/tabular/07012018-report-final.pdf files/tabular/raw-test.txt
 ```
 
 You should get something like this (very bad stuff):
 
 ![Alt Text](/imgs/unstructured.png)
 
-Now that we've walked through the basics of text extraction with computer generated (nice) pdfs, let's go onto the harder use cases.
+Now that we've walked through one way to extract text from computer generated (nice) pdfs, let's move on to working with image pdfs.
 
 ## Scenario 2: Basic text extraction from image files
 
-Extracting text from image files is perhaps one of the most common problems reporters face when they get data from government agencies or are trying to build their own databases from scratch (paper records, the dreaded image pdf of an Excel spreadsheet, etc.) To do this, we use OCR and in this example, Tesseract.
+Extracting text from image files is perhaps one of the most common problems reporters face when they get data from government agencies or are trying to build their own databases from scratch (paper records, the dreaded image pdf of an Excel spreadsheet, etc.) To do this, we use OCR and in this example, `tesseract`.
 
-#### Basics of tesseract
+#### Basics of `tesseract`
 
-Tesseract has many options. You can see them by typing:
+`tesseract` has many options. You can see them by typing:
 
-```
+```bash
 tesseract -h
 ```
 
@@ -139,17 +160,17 @@ We're not going to go into detail on many of these options but you can read me [
 
 The basic command structure looks like this:
 
-```
+```bash
 tesseract imagename outputbase [-l lang] [--oem ocrenginemode] [--psm pagesegmode] [configfiles...]
 ```
 
-Let's look at a single image file. In this case, that's the wh_salaries.png file in our imgs folder. This is the first page of our White House salaries pdf but notice that it is not searchable.
+Let's look at a single image file. In this case, that's the wh_salaries.png file in our imgs folder. This is the first page of our White House salaries PDF but notice that it is not searchable.
 
-This is perhaps the most simple use of tesseract. We will feed in our image file and have it output a searchable pdf.
+This is perhaps the most simple use of `tesseract`. We will feed in our image file and have it output a searchable pdf.
 
 In ```/files/single_img``` directory, use the following command.
 
-```
+```bash
 tesseract wh_salaries.png out pdf
 ```
 
@@ -167,11 +188,11 @@ You should get a file name out.pdf and you can see that it's searchable.
 
 So far, we've covered extracting text from computer generated files and doing some basic OCR. Now, we'll turn to creating searchable pdfs out of image files. To do this, we'll be adding another command line tool called ImageMagick, an image editing and manipulation software.
 
-We will be using the ```convert``` tool from ImageMagick.
+We will be using the `convert` tool from ImageMagick.
 
 ImageMagick has some great documentation that explains all of its many options. You can find it [here](http://www.imagemagick.org/script/command-line-options.php#page)
 
-```
+```bash
 convert [options ...] file [ [options ...] file ...] [options ...] file
 ```
 
@@ -183,44 +204,44 @@ The general standard for OCR is 300 dpi, or 300 dots per inch, though [ABBYY rec
 
 Before we go on from here, let's make sure we have the tiff delegate installed. You can check like this:
 
-```
+```bash
 convert -list configure
 ```
 
-Scroll down to ```DELEGATES``` and make sure it includes ```tiff```
+Scroll down to `DELEGATES` and make sure it includes `tiff`
 
 For example:
 
-```
+```bash
 DELEGATES      bzlib mpeg freetype jng jpeg lzma png tiff xml zlib
 ```
 
-#### IF you don't have tiff in the list, follow these steps:
+#### If you don't have tiff in the list, follow these steps:
 
 First check to make sure that libtiff and ghostscript are installed. You can do this by running
 
-```
+```bash
 brew list
 ```
 
 If ghostscript is not in the list, then install it using brew.
-```
+```bash
 brew install ghostscript
 ```
 
 If libtiff is not in the list, then install it using brew.
-```
+```bash
 brew install libtiff
 ```
 
 Now check to make sure that imagemagick is recognizing libtiff is installed as a dependency.
-```
+```bash
 brew info imagemagick
 ```
 
 If you're good to go, it should look something like this:
 
-```
+```bash
 ==> Dependencies
 Build: pkg-config ✔
 Required: freetype ✔, jpeg ✔, libheif ✔, libomp ✔, libpng ✔, libtiff ✔, libtool ✔, little-cms2 ✔, openexr ✔, openjpeg ✔, webp ✔, xz ✔
