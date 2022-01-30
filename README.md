@@ -58,20 +58,18 @@ brew install xpdf tesseract libtiff ghostscript imagemagick
 
 ## Files
 
-We'll  be using a number of files for our examples. You can find them in [here](/files).
+We'll be using a number of files for our examples. You can find them in [here](/files).
 
 ## Scenario 1: Analyzing a computer generated pdf with embedded text (searchable pdf)
 
-This is probably the easiest problem to solve dealing with pdfs. We want to extract the text from a searchable pdf for analysis of some type.
-
-There are many GUI software programs you can use to do this. They all have strengths and weaknesses.
+We want to extract the text from a searchable pdf for analysis of some type. There are many GUI software programs you can use to do this. They all have strengths and weaknesses.
 
 * [Cometdocs](https://www.cometdocs.com/)
 * [Tabula](https://tabula.technology/) (free and great for tabular data!)
 * [Adobe Acrobat Pro](https://acrobat.adobe.com/us/en/acrobat/pricing.html?mv=search&sdid=J7XBWTSV&ef_id=CjwKCAiA1ZDiBRAXEiwAIWyNC62H_xFn3sW5k3JAETpc_MeS9HOq-7l-qD2cvFXcU-Qkl-v_TPYjSxoC4bsQAvD_BwE:G:s&s_kwcid=AL!3085!3!99546333262!e!!g!!%2Badobe%20%2Bacrobat%20%2Bpro&gclid=CjwKCAiA1ZDiBRAXEiwAIWyNC62H_xFn3sW5k3JAETpc_MeS9HOq-7l-qD2cvFXcU-Qkl-v_TPYjSxoC4bsQAvD_BwE) ($$)
 * [Abbyy Finereader](https://www.abbyy.com/en-us/finereader/?redirect-from=old-fr-pro&__c=1) ($$ but also very accurate)
 
-For this tutorial, we're going to use an open source powertool from Xpdf called pdftotext. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
+For this tutorial, we're going to use an open source powertool from Xpdf called `pdftotext`. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
 
 I often use this tool to check for hidden text, particularly in documents that have redactions. 
 
@@ -83,9 +81,9 @@ Our [document](files/manafort/Manafort_filing.pdf) has several sections like thi
 
 ![Alt Text](/imgs/Manafort_2.png)
 
-But since we can tell that there's text underneath there, let's run it through pdftotext and see what comes out.
+But since we can tell that there's text underneath there, let's run it through `pdftotext` and see what comes out.
 
-#### pdftotext command construction
+#### `pdftotext` command construction
 
 ```bash
 pdftotext /path/to/my/file.pdf name-of-my-text-file.txt
@@ -156,7 +154,7 @@ Extracting text from image files is perhaps one of the most common problems repo
 tesseract -h
 ```
 
-We're not going to go into detail on many of these options but you can read me [here](https://github.com/tesseract-ocr/tesseract/wiki)
+We're not going to go into detail on many of these options but you can read more [here](https://github.com/tesseract-ocr/tesseract/wiki)
 
 The basic command structure looks like this:
 
@@ -190,7 +188,7 @@ So far, we've covered extracting text from computer generated files and doing so
 
 We will be using the `convert` tool from ImageMagick.
 
-ImageMagick has some great documentation that explains all of its many options. You can find it [here](http://www.imagemagick.org/script/command-line-options.php#page)
+ImageMagick has some great documentation that explains its many options. You can find it [here](http://www.imagemagick.org/script/command-line-options.php#page)
 
 ```bash
 convert [options ...] file [ [options ...] file ...] [options ...] file
@@ -254,13 +252,13 @@ Now that we've installed ghostscript and the tiff delegate, let's continue on wi
 
 First, we have to convert it to an image so we can run it through tesseract.
 
-We'll use ImageMagick's ```convert``` tool.
+We'll use ImageMagick's `convert` tool.
 
 ```
 convert russia_findings.pdf russia_findings.tiff
 ```
 
-On a Mac, an easy way to find the dpi of an image is to use Preview. Open the image in preview, go to ```Tools``` and click ```Show Inspector```.
+On a Mac, an easy way to find the dpi of an image is to use Preview. Open the image in preview, go to `Tools` and click `Show Inspector`.
 
 So let's take a look at our image we just created.
 
@@ -268,7 +266,7 @@ So let's take a look at our image we just created.
 
 ![Alt Text](/imgs/preview.png)
 
-#### Go to 'Show Inspector'
+#### Go to `Show Inspector`
 
 ![Alt Text](/imgs/show_inspector.png)
 
@@ -280,54 +278,66 @@ So let's take a look at our image we just created.
 
 ![Alt Text](/imgs/inspector_2.png)
 
-So our dpi is ```72```, which likely is fine for this document but let's go ahead and up that using convert. This will increase the file size of the tiff we create (so warning about file bloat) but it's only a temporary file that we're using to get the best text recognition.
+So our dpi is `72`, which likely is fine for this document but let's go ahead and up that using convert. This will increase the file size of the tiff we create (so warning about file bloat) but it's only a temporary file that we're using to get the best text recognition.
 
 Let's do this with our Russia document.
 
-```
+```bash
 convert -density 300 russia_findings.pdf -depth 8 -strip -background white -alpha off russia_findings.tiff
 ```
 
 So let's break this down.
 
-```convert``` - invokes ImageMagick's convert tool
+`convert` - invokes ImageMagick's convert tool
 
-```-density``` - ups the dpi of our image to 300
+`-density` - ups the dpi of our image to 300
 
-```russia_finding.pdf ``` - our file that we're converting to an image.
+`russia_finding.pdf ` - our file that we're converting to an image.
 
-```-depth 8``` - "This the number of bits in a color sample within a pixel. Use this option to specify the depth of raw images whose depth is unknown such as GRAY, RGB, or CMYK, or to change the depth of any image after it has been read", according to ImageMagick documentation.
+`-depth 8` - "This the number of bits in a color sample within a pixel. Use this option to specify the depth of raw images whose depth is unknown such as GRAY, RGB, or CMYK, or to change the depth of any image after it has been read", according to ImageMagick documentation.
 
-```-strip``` - strips off any junk on the file (profiles, comments, etc.)
+`-strip` - strips off any junk on the file (profiles, comments, etc.)
 
-```-background white``` - sets the background to white to help with contrasting our text
+`-background white` - sets the background to white to help with contrasting our text
 
-```-alpha off``` -generally the transparency of the image. A great explanation [here](https://www.quora.com/What-exactly-is-an-alpha-channel-in-an-image)
+`-alpha off` -generally the transparency of the image. A great explanation [here](https://www.quora.com/What-exactly-is-an-alpha-channel-in-an-image)
 
 #### Now we run this tiff through tesseract
 
-```
-tesseract russia_findings.tiff -l eng russia_findings_enh pdf
+```bash
+tesseract russia_findings.tiff russia_findings_enh pdf 
 ```
 
 And you've got a searchable pdf!
 
-
 Let's take a look at the underlying text now.
 
-```
+```bash
 pdftotext russia_findings_enh.pdf russia_text.txt
-```
-
-We also could have just outputted directly to a text file like this.
-
-```
-tesseract russia_findings.tiff -l eng russia_findings_enh txt
 ```
 
 ## Where to go from here:
 
-OCRing is not a perfect science and most of the time, it isn't simple. One recent example: public financial disclosures of federal judges are multi-page documents but they are released as extremely long, single tiff files. You can find a similar test file [here](https://drive.google.com/open?id=11YpC2-0yYyuJL7AJnvG48q9H8hrrDQon)
+#### Scripting and Batch process
+
+Now that we've walked through how some of these tools work, you can put them all together into bash scripts if you like. I've included an example script in this repo that seeks to hold down file bloat but it may require some tweaking for your specific use case. OCRing is not a perfect science and most of the time, it takes some trial and error to find the right settings for the documents you're working with.
+
+Try it out on `russia_findings.pdf` in the `image_pdfs` folder. (You will likely need to run `chmod u+x im_ocr.sh`)
+
+##### Output a searchable pdf
+
+```bash
+./im_ocr.sh /files/image_pdfs/russia_findings.pdf pdf
+```
+
+##### Output a text file
+```bash
+./im_ocr.sh /files/image_pdfs/russia_findings.pdf txt
+```
+
+#### Judicial Public Financial Disclosure Example
+
+Public financial disclosures of federal judges are multi-page documents but they are released as extremely long, single tiff files. You can find a similar test file [here](https://drive.google.com/open?id=11YpC2-0yYyuJL7AJnvG48q9H8hrrDQon)
 
 ![Alt Text](/imgs/Walker16.png)
 
@@ -337,8 +347,8 @@ And you'll notice that the pages need to be split.
 
 The workflow below walks through one example of how to solve the problem using ImageMagick and Tesseract.
 
-This blows up the images, adjusts the image resolution, ups the contrast to help bring out the text. It then outputs a grayscale version, set at 8-bit depth, named Walker16_enh.tiff.
-```
+This blows up the images, adjusts the image resolution, ups the contrast to help bring out the text. It then outputs a grayscale version, set at 8-bit depth, named `Walker16_enh.tiff`.
+```bash
 convert -resize 400% -density 450 -brightness-contrast 5x0 Walker16.tiff -set colorspace Gray -separate -average -depth 8 -strip Walker16_enh.tiff
 ```
 
@@ -352,21 +362,20 @@ The first value is the width and the second value is the length. To get the pixe
 
 ![Alt Text](/imgs/dimensions.png)
 
-```
+```bash
 convert Walker16_enh.tiff -crop 3172x4200 Walker16_to_ocr.tiff
 ```
 
 Then we convert that image into a searchable pdf.
 
-```
+```bash
 tesseract Walker16_to_ocr.tiff -l eng Walker16 pdf
 ```
 
-Exploring the various options and fine-tuning your skills with ImageMagick can help prepare you for the next big step: Batch processing of documents, which you can hear more about [here at NICAR](https://www.ire.org/events-and-training/event/3433/4227/).
-
+Exploring the various options and fine-tuning your skills with ImageMagick can help prepare you for the next big step: Batch processing of documents. I highly suggest if you are comfortable in Python, using Jeremy Singer-Vine's [`pdfplumber`](https://github.com/jsvine/pdfplumber#extracting-tables).
 
 ## Sources and references
-I created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-training/conferences/nicar-2019') but it relies on many helpful open source resources that deserve credit. They are listed below. Thanks for sharing your work with the rest of the world.
+I created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-training/conferences/nicar-2019'). It was update for [NICAR 2022](https://schedules.ire.org/nicar-2022/). It relies on many helpful open source resources that deserve credit. They are listed below. Thanks for sharing your work with the rest of the world.
 
 [Tesseract](https://github.com/tesseract-ocr/tesseract/wiki/Command-Line-Usage) documentation
 
