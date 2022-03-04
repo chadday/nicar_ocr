@@ -3,7 +3,7 @@ A tutorial on extracting text from PDFs and optical character recognition using 
 
 ## Introduction
 
-This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or worse an image PDF. We'll first walk through how extract text from a computer-generated PDF using a command line tool. Then we'll step up to Optical Character Recognition, or OCR, to work on image files. 
+This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or worse an image PDF. We'll first walk through how to extract text from a computer-generated PDF using command line tools. Then we'll step up to Optical Character Recognition, or OCR, to work on image files. 
 
 ## Installation
 
@@ -26,7 +26,7 @@ This class will be following the Mac install instructions but you can find Windo
 
 For Mac, we'll be using the Homebrew package manager. You can install it [here](https://brew.sh/). 
 
-So for tesseract, you will use the following command.
+For tesseract, you will use the following command.
 ```bash
 brew install tesseract
 ```
