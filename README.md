@@ -330,11 +330,22 @@ Try it out on `russia_findings.pdf` in the `image_pdfs` folder. (You will likely
 ./im_ocr.sh /files/image_pdfs/russia_findings.pdf pdf
 ```
 
+In the IRE mac lab, the terminals by default use zsh, so we'll want to invoke bash manually instead like below.
+
+```bash
+bash im_ocr.sh /files/image_pdfs/russia_findings.pdf pdf
+```
+
 ##### Output a text file
 ```bash
 ./im_ocr.sh /files/image_pdfs/russia_findings.pdf txt
 ```
 
+In the IRE mac lab, the terminals by default use zsh, so we'll want to invoke bash manually instead like below.
+
+```bash
+bash im_ocr.sh /files/image_pdfs/russia_findings.pdf txt
+```
 #### Judicial Public Financial Disclosure Example
 
 Public financial disclosures of federal judges are multi-page documents but they are released as extremely long, single tiff files. You can find a similar test file [here](https://drive.google.com/open?id=11YpC2-0yYyuJL7AJnvG48q9H8hrrDQon)
