@@ -1,5 +1,5 @@
 # NICAR: Advanced PDF processing with OCR and command-line tools
-A tutorial on extracting text from PDFs and optical character recognition using tesseract, ImageMagick and other open source tools. Updated for NICAR 2022.
+A tutorial on extracting text from PDFs and optical character recognition using tesseract, ImageMagick and other open source tools. Updated for NICAR 2023.
 
 ## Introduction
 
@@ -65,6 +65,12 @@ You can also try out [textra](https://github.com/freedmand/textra) an open-sourc
 All of the tools below are also available to you on Mac OS 13 or higher.
 
 If you're not on a newer Mac, fear not! Hopefully some of the tools below will help you out.
+
+
+## How to think about this class
+Text extraction from PDFs and OCRing image files is much more of an art than a science. The tools below are meant to give you a lot of different options to try to get the text out of an image PDF and into a format that you can work with. Sometimes they will work amazingly well on some documents. Sometimes they won't work at all. Oftentimes, it's somewhere in the middle where the data will require some clean up.
+
+If you're comforable in Python, I recommend pairing these tools with other great open-source projects such as Jeremy Singer-Vine's [`pdfplumber`](https://github.com/jsvine/pdfplumber), which we used extensively to build several Python parsers for [the Capital Assets project](https://www.wsj.com/articles/capital-assets-11665673055) and many others at The Wall Street Journal.
 
 ## Files
 
@@ -398,7 +404,7 @@ tesseract Walker16_to_ocr.tiff -l eng Walker16 pdf
 Exploring the various options and fine-tuning your skills with ImageMagick can help prepare you for the next big step: Batch processing of documents. I highly suggest if you are comfortable in Python, using Jeremy Singer-Vine's [`pdfplumber`](https://github.com/jsvine/pdfplumber#extracting-tables).
 
 ## Sources and references
-I created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-training/conferences/nicar-2019'). It was update for [NICAR 2022](https://schedules.ire.org/nicar-2022/). It relies on many helpful open source resources that deserve credit. They are listed below. Thanks for sharing your work with the rest of the world.
+I originally created this tutorial for [NICAR 2019]('https://www.ire.org/events-and-training/conferences/nicar-2019'). It was update for [NICAR 2022](https://schedules.ire.org/nicar-2022/). It relies on many helpful open source resources that deserve credit. They are listed below. Thanks for sharing your work with the rest of the world.
 
 [Tesseract](https://github.com/tesseract-ocr/tesseract/wiki/Command-Line-Usage) documentation
 
