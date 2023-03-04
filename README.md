@@ -56,6 +56,16 @@ To install all of them at once, you can run the following
 brew install xpdf tesseract libtiff ghostscript imagemagick
 ```
 
+## Some important updates for 2023
+
+This class doesn't assume that you're working on a Mac with an OS greater than 13 but if you are, you can take advantage of some built-in OCR features. For example, some of the image PDFs you open up from this repo will be automatically OCR'd and have selectable text when you open them on newer Macs. 
+
+You can also try out [textra](https://github.com/freedmand/textra) an open-source project from The Washington Post's Dylan Freedman that uses those built in Mac OCR tools to extra text from image PDFs. 
+
+All of the tools below are also available to you on Mac OS 13 or higher.
+
+If you're not on a newer Mac, fear not! Hopefully some of the tools below will help you out.
+
 ## Files
 
 We'll be using a number of files for our examples. You can find them in [here](/files).
@@ -68,6 +78,8 @@ We want to extract the text from a searchable pdf for analysis of some type. The
 * [Tabula](https://tabula.technology/) (free and great for tabular data!)
 * [Adobe Acrobat Pro](https://acrobat.adobe.com/us/en/acrobat/pricing.html?mv=search&sdid=J7XBWTSV&ef_id=CjwKCAiA1ZDiBRAXEiwAIWyNC62H_xFn3sW5k3JAETpc_MeS9HOq-7l-qD2cvFXcU-Qkl-v_TPYjSxoC4bsQAvD_BwE:G:s&s_kwcid=AL!3085!3!99546333262!e!!g!!%2Badobe%20%2Bacrobat%20%2Bpro&gclid=CjwKCAiA1ZDiBRAXEiwAIWyNC62H_xFn3sW5k3JAETpc_MeS9HOq-7l-qD2cvFXcU-Qkl-v_TPYjSxoC4bsQAvD_BwE) ($$)
 * [Abbyy Finereader](https://www.abbyy.com/en-us/finereader/?redirect-from=old-fr-pro&__c=1) ($$ but also very accurate)
+* [PDFElement](https://pdf.wondershare.net/ad/pdf-editor-mac.html?gclid=Cj0KCQiA9YugBhCZARIsAACXxeIuIJnFM5WV8YzhxqnEVl_cP7dwNYTGuzNZ-w0AhQiEn6AWrWZZ9TEaAvuXEALw_wcB) 
+
 
 For this tutorial, we're going to use an open source powertool from Xpdf called `pdftotext`. The construction of the command is pretty intuitive. You point it at a file and it outputs a text file.
 
