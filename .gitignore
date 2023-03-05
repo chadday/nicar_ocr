@@ -2,7 +2,11 @@
 ####################
 .env
 ocr_env/
+.venv/
+.venv/*
 
+.DS_Store
+files/.DS_Store
 # VS Code #
 ##################
 .vscode/
