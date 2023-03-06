@@ -1,4 +1,4 @@
-# NICAR: Advanced PDF processing with OCR and command-line tools
+# NICAR: PDF processing with OCR and command-line tools
 A tutorial on extracting text from PDFs and optical character recognition using tesseract, ImageMagick and other open source tools. Updated for NICAR 2023.
 
 ## Introduction
