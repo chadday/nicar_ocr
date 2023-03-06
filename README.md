@@ -5,6 +5,10 @@ A tutorial on extracting text from PDFs and optical character recognition using 
 
 This class seeks to help you solve a common problem in journalism: Data stored in a computer generated PDF or worse an image PDF. We'll first walk through how to extract text from a computer-generated PDF using command line tools. Then we'll step up to Optical Character Recognition, or OCR, to work on image files. 
 
+## New for NICAR 2023
+
+We had some extra time at the end of class to show how you can use `pdfplumber` to extract data from one of the searchable PDFs we created. You can find the notebook [here](/notebooks/pdfplumber_example.ipynb).
+
 ## Installation
 
 First things first, we need to install the tools we'll be using. (NICAR attendees using lab laptops: IRE has already completed the install).
