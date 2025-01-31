@@ -58,7 +58,7 @@ To install all of them at once, you can run the following
 brew install xpdf tesseract libtiff ghostscript imagemagick
 ```
 
-## Some important updates for 2023
+## Some important updates
 
 This class doesn't assume that you're working on a Mac with an OS greater than 13 but if you are, you can take advantage of some built-in OCR features. For example, some of the image PDFs you open up from this repo will be automatically OCR'd and have selectable text when you open them on newer Macs. 
 
